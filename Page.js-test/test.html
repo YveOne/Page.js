@@ -25,15 +25,29 @@
             Page.openCondition = (openId, curId) => {
                 return new Promise((resolve, reject) => {
                     if (openId !== "anotherPage" || confirm("open anotherPage?")) {
-                        resolve(true);
+                        resolve();
                     } else {
-                        resolve(false);
+                        reject(new Error("not confirmed"));
                     }
                 });
             };
 
+            Page.hashPlugin.onOpen = (id, data) => {
+                Page.open(id, data)
+                .catch((e) => {
+                    alert(`Caught error: ${e.message}`);
+                });
+            };
+
+            Page.hashPlugin.onClose = (id, data) => {
+                Page.close(id, data)
+                .catch((e) => {
+                    alert(`Caught error: ${e.message}`);
+                });
+            };
+
             location.hash = "";
-            Page.loadJS("pages/", [
+            Page.loaderPlugin.loadJS("pages/", [
                 "mainPage",
                 "anotherPage",
                 "configPages"

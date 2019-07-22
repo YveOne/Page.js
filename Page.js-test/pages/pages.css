@@ -1,64 +1,64 @@
 
 .right { position: absolute; top: 1em; right: 2em; }
 
+body {
+    font-size: 20px;
+    font-family: verdana;
+}
 
+#pages {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
 
-.page {
-    transform: translate3d(0, 0, 0);
-    will-change: transform;
+#pages .page {
     position: absolute;
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
 
-.header,
-.footer {
+#pages .page .header,
+#pages .page .content,
+#pages .page .footer {
     position: absolute;
-    left: 0;
-    right: 0;
-    line-height: 1em;
-    padding: 1em 2em 0;
-    height: 2em;
+    overflow: hidden;
+    left: 0.5em;
+    right: 0.5em;
     z-index: 3;
-    background: rgba(0, 0, 0, 0.33);
+    background: #333333;
+    border-radius: 0.5em;
+    border: 0.1em solid #000000;
 }
 
-.header {
-    top: 0;
-    border-bottom: 0.02em solid rgba(255,255,255, 0.2);
+#pages .page .header,
+#pages .page .footer {
+    line-height: 1em;
+    padding: 1em 1em 0;
+    height: 2em;
 }
-.header span,
-.header a,
-.footer span,
-.footer a {
+
+#pages .page .header { top: 0.5em; }
+#pages .page .footer { bottom: 0.5em; color: #888888; }
+#pages .page .content { top: 4.5em; bottom: 4.5em; padding: 1em; }
+
+#pages .page .header span,
+#pages .page .header a span {
     display: block;
     color: #fff;
     font-weight: bold;
-    font-size: 1.2em;
 }
 
-.footer {
-    bottom: 0;
-    border-top: 0.02em solid rgba(0, 0, 0, 0.2);
-}
-
-.content {
-    position: absolute;
-    top: 3em;
-    left: 0;
-    right: 0;
-    bottom: 3em;
-    z-index: 3;
-    overflow: hidden;
-}
-
-.content a {
+#pages .page .content a {
     display: inline-block;
 
     padding: 1em;
 
-    text-align:center;
+    text-align: center;
     line-height: 0.8em;
 
     background: rgba(255, 255, 255, 0.8);
@@ -70,56 +70,30 @@
 
     color: #000;
 }
-.content a[hover] {
+#pages .page .content a:hover {
     background: rgba(255, 255, 255, 1);
 }
-.content a[disabled] {
-    opacity: 0.33;
+
+/**********************************\
+* ANIMATIONS
+\**********************************/
+
+/* for default page animation */
+.page {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
 }
 
-.content a span {
-    font-family: "Open Sans";
-}
 
 
 
-
-
-
-
-/***********************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* custom header animations */
 
 #pages .header,
 #pages .footer,
 #pages .content {
     will-change: transform;
 }
-
 
 #pages .page.opening .header {
     transform: translateZ(0) translateY(-3.5em);
@@ -145,8 +119,7 @@
 
 
 
-
-
+/* custom footer animations */
 
 #pages .page.opening .footer {
     transform: translateZ(0) translateY(3.5em);
@@ -172,8 +145,7 @@
 
 
 
-
-
+/* custom content animations */
 
 #pages .page.opening .content {
     z-index: 2;

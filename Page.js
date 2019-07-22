@@ -1,5 +1,5 @@
 /*
- *  Page.js v1.0
+ *  Page.js v1.0.1
  *  Author: Yvonne P. (yveone.com)
  *  License: MIT
 **/
@@ -147,10 +147,7 @@
             }
 
             Page.openCondition(id, current ? current.id : undefined)
-            .then((doOpen) => {
-                if (!doOpen) {
-                    return false;
-                }
+            .then(() => {
                 return new Promise((resolve, reject) => {
 
                     running = true;
